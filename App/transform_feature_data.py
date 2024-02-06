@@ -2,6 +2,7 @@ import joblib
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+
 import yfinance as yf
 
 def train_model():
@@ -22,7 +23,8 @@ def train_model():
 
     features = data[["Short_day_change", "Mid_day_change", "Long_day_change"]].iloc[0]
 
-    input_data = np.insert(features.values, 0, 0)
+    input_data = np.insert(features.values, 0, 55)
+    
     prediction = model.predict(np.array(input_data).reshape(1, -1)) 
     
     return prediction

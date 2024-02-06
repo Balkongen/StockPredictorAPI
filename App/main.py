@@ -14,7 +14,7 @@ async def root():
 @app.get("/prediction/{ticker}")
 async def get_ml_prediction(ticker: Ticker):
     if (ticker is Ticker.SHB):
-        return "HEJ: "
+        return "HEJ: " + get_prediction()
 
 
 
