@@ -5,9 +5,9 @@ import pandas as pd
 
 import yfinance as yf
 
-def train_model():
+def train_model(ticker):
 
-    model = joblib.load("App/model_RF.pkl")
+    model = joblib.load("App/Models/model_RF_" + ticker + ".pkl")
     
     SHORT_CHANGE_HORIZON = 5
     MID_CHANGE_HORIZON = 20

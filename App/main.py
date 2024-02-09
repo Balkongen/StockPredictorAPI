@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Response, status
 from .service import *
 from .Ticker import Ticker
 
@@ -11,10 +11,9 @@ async def root():
     return {"message": "Hello World!"}
 
 
-@app.get("/prediction/{ticker}")
+@app.get("/prediction/{ticker}", status_code=status.HTTP_200_OK)
 async def get_ml_prediction(ticker: Ticker):
-    if (ticker is Ticker.SHB):
-        return "HEJ: " + get_prediction()
+    return ticker + " : price breaking point: " + get_prediction(ticker)
 
 
 
