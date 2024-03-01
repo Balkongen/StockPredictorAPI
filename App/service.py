@@ -1,4 +1,4 @@
-from .transform_feature_data import train_model
+from .transform_feature_data import predict
 
 def get_prediction(ticker):
-    return str(train_model(ticker))
+    return str(predict(ticker))
