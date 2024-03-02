@@ -18,6 +18,22 @@ def predict(ticker): # TODO make this take in a int as paremter for change value
     return prediction
 
 
+def predict_over_range_of_values(ticker):
+    model = joblib.load("App/Models/model_RF_" + ticker + ".pkl")
+    
+    features = __transform_features(ticker)
+    varying_input_values = np.linspace(-10, 10, 100)  # Adjust the range and number of points as needed
+
+    for varying_input in varying_input_values:
+        
+        input_data = np.insert(features.values, 0, varying_input)
+        prediction = model.predict(np.array(input_data).reshape(1, -1))  # Reshape for single sample
+
+        if prediction[0] == 1:
+            return varying_input;
+
+
+
 def __transform_features(ticker): # TODO naming convetion for private/help method??
     
     SHORT_CHANGE_HORIZON = 5
@@ -36,3 +52,7 @@ def __transform_features(ticker): # TODO naming convetion for private/help metho
     
     return features
 
+
+
+def __get_varying_change_range(data): #TODO calculates the price difference range
+    pass
