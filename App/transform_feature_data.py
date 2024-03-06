@@ -53,5 +53,9 @@ def __transform_features(ticker): # TODO naming convetion for private/help metho
 
 
 
-def __get_varying_change_range(data): #TODO calculates the price difference range
-    pass
+def get_varying_change_range(stock):
+    PRICE_CHANGE_INTERVAL = 0.1
+
+    data = stock.history(period="1d")
+    price = data["Open"].iloc[0]
+    return price * PRICE_CHANGE_INTERVAL
