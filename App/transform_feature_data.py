@@ -1,8 +1,10 @@
 import joblib
 import numpy as np
 import pandas as pd
-
+from datetime import datetime
 import yfinance as yf
+
+
 
 def predict(ticker): # TODO make this take in a int as paremter for change value?
 
@@ -15,6 +17,7 @@ def predict(ticker): # TODO make this take in a int as paremter for change value
     prediction = model.predict(np.array(input_data).reshape(1, -1)) 
     
     return prediction
+
 
 
 def predict_over_range_of_values(ticker):
@@ -59,3 +62,11 @@ def get_varying_change_range(stock):
     data = stock.history(period="1d")
     price = data["Open"].iloc[0]
     return price * PRICE_CHANGE_INTERVAL
+
+
+
+def is_row_today(pandas_row) -> bool:
+    today = datetime.now().date()
+    row_date = pandas_row.date[0]
+    
+    return today <= row_date
